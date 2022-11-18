@@ -6,6 +6,10 @@ to be retrained with the same cadence, necessitating an end-to-end pipeline that
 
 In this project you will build such a pipeline.
 
+## Project links
+Github: https://github.com/danny-bit/udacity_mlops_pipeline
+WandB: https://wandb.ai/danny-bit/nyc_airbnb
+
 ## Table of contents
 
 - [Introduction](#build-an-ML-Pipeline-for-Short-Term-Rental-Prices-in-NYC)

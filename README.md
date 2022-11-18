@@ -8,6 +8,7 @@ In this project you will build such a pipeline.
 
 ## Project links
 Github: https://github.com/danny-bit/udacity_mlops_pipeline
+
 WandB: https://wandb.ai/danny-bit/nyc_airbnb
 
 ## Table of contents

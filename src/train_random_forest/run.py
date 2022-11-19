@@ -139,18 +139,14 @@ def get_inference_pipeline(rf_config, max_tfidf_features):
     # for room type: 'Entire home/apt' > 'Private room' > 'Shared room'
     ordinal_categorical = ["room_type"]
     non_ordinal_categorical = ["neighbourhood_group"]
+
     # NOTE: we do not need to impute room_type because the type of the room
     # is mandatory on the websites, so missing values are not possible in production
     # (nor during training). That is not true for neighbourhood_group
     ordinal_categorical_preproc = OrdinalEncoder()
 
-    ######################################
-    # Build a pipeline with two steps:
-    # 1 - A SimpleImputer(strategy="most_frequent") to impute missing values
-    # 2 - A OneHotEncoder() step to encode the variable
     non_ordinal_categorical_preproc = make_pipeline(SimpleImputer(strategy='most_frequent'),
                                                     OneHotEncoder())
-    ######################################
 
     # Let's impute the numerical columns to make sure we can handle missing values
     # (note that we do not scale because the RF algorithm does not need that)
@@ -203,11 +199,7 @@ def get_inference_pipeline(rf_config, max_tfidf_features):
     # Create random forest
     random_Forest = RandomForestRegressor(**rf_config)
 
-    ######################################
-    # Create the inference pipeline. The pipeline must have 2 steps: a step called "preprocessor" applying the
-    # ColumnTransformer instance that we saved in the `preprocessor` variable, and a step called "random_forest"
-    # with the random forest instance that we just saved in the `random_forest` variable.
-    # HINT: Use the explicit Pipeline constructor so you can assign the names to the steps, do not use make_pipeline
+    # Create the inference pipeline
     sk_pipe = Pipeline([('preprocessor',preprocessor),
                         ('random_forest', random_Forest)])
 
